@@ -1,0 +1,11 @@
+[Unit]
+Description=ri49-scanner
+After=multi-user.target
+ 
+[Service]
+Type=simple
+Restart=always
+ExecStart=/opt/ri49-scanner/main.py
+ 
+[Install]
+WantedBy=multi-user.target
