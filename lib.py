@@ -41,7 +41,6 @@ def has_traffic_in_current_room(log_path, sleep):
 
 
 def has_traffic_in_target_room(api):
-    print('scanning...', flush=True)
     data = requests.get(api).json()
     return data['talker']
 
@@ -61,7 +60,6 @@ def kill_and_start_timersalon():
 def qsy_counter_complete(delay, interval):
     global counter
     counter = counter + interval
-    print(counter, flush=True)
     return counter < delay
 
 

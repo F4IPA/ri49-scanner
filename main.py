@@ -31,8 +31,7 @@ while True:
     # On attend un delai avant de commancer à scanner
     # Cela permet d'éviter certain problèmes d'informations manquantes
     # lors d'un qsy dans vers un nouveau salon. 
-    # Ne pas modifier la valeur 300
-    if lib.qsy_counter_complete(300, INTERVAL): continue
+    if lib.qsy_counter_complete(270, INTERVAL): continue
 
 
     # vérification si trafique en cours
