@@ -6,13 +6,13 @@
 import lib
 import time
 
-TARGET   = 'reg'                                        # salon à surveiller
-DTMF     = 104                                          # code DTMF du salon TARGET
-API      = 'http://49.f4ipa.fr/data/api.json'           # url de l'API du salon TARGET
-NETWORK  = '/etc/spotnik/network'                       # chemin vers le salon actuel
-SVXLOG   = '/tmp/svxlink.log'                           # chemin vers le fichier svxlink.log
-SLEEP    = 30                                           # secondes d'inactivées avant début du scan
-INTERVAL = 3                                            # Delai en secondes entre chaque scan
+TARGET   = 'ri49'                                        # salon à surveiller
+DTMF     = 49                                            # code DTMF du salon TARGET
+API      = 'https://49.f4ipa.fr/data/api.json'           # url de l'API du salon TARGET
+NETWORK  = '/etc/spotnik/network'                        # chemin vers le salon actuel
+SVXLOG   = '/tmp/svxlink.log'                            # chemin vers le fichier svxlink.log
+SLEEP    = 30                                            # secondes d'inactivées avant début du scan
+INTERVAL = 3                                             # Delai en secondes entre chaque scan
 
 print("Initialisation...", flush=True)
 
