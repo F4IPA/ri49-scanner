@@ -16,11 +16,23 @@ Se connecter en SSH (putty) sur votre hotspot et copier les commandes suivantes 
 
 `mv ri49-scanner.service /etc/systemd/system`
 
-`sudo systemctl daemon-reload`
+`systemctl daemon-reload`
 
-`sudo systemctl enable ri49-scanner.service`
+`systemctl enable ri49-scanner.service`
 
-`sudo systemctl start ri49-scanner.service`
+
+## Configuration
+
+Éditer le fichier /opt/ri49-scanner/main.py
+
+Vérifier les valeurs suivantes :
+
+- la valeur DTMF corresponde au DTMF du RI49 sur votre système
+- la valeur TARGET corresponde à l'extension du fichier restart.xxx du RI49
+
+Vous pouvez ensuite lancer le RI49 Scanner en tapant la commande suivante : 
+
+`systemctl start ri49-scanner.service`
 
 ## Développement
 
