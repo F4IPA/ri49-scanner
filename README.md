@@ -8,17 +8,13 @@ Ce script permet un QSY automatique vers le Réseau Interconnecté du 49 (RI49) 
 
 Se connecter en SSH (putty) sur votre hotspot et copier les commandes suivantes :
 
-`cd /opt`
+`git clone https://github.com/F4IPA/ri49-scanner /opt`
 
-`git clone https://github.com/F4IPA/ri49-scanner`
+`pip3 install requests`
 
-`cd ri49-scanner`
+`mv /opt/ri49-scanner/ri49-scanner.service /etc/systemd/system`
 
-`mv ri49-scanner.service /etc/systemd/system`
-
-`systemctl daemon-reload`
-
-`systemctl enable ri49-scanner.service`
+`systemctl daemon-reload && systemctl enable ri49-scanner.service`
 
 
 ## Configuration
