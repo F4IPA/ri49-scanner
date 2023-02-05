@@ -8,10 +8,22 @@ import time
 current_room = ''
 counter = 0
 
+def debug(text):    
+    if '--debug' not in sys.argv: return
+    print(text, flush=True)
+
 def current_room_is_target(current_room_path, target):
+    debug('Vérification de la room en cours')
     file = open(current_room_path, 'r')
     room = file.read().strip(); file.close()
     return room == target
+
+
+def current_room_is_exclude(current_room_path, exclude_rooms):
+    debug('Vérication des rooms exclus')
+    file = open(current_room_path, 'r')
+    room = file.read().strip(); file.close()
+    return room in exclude_rooms
 
 
 def has_qsy(current_room_path):
@@ -20,11 +32,13 @@ def has_qsy(current_room_path):
     room = file.read().strip(); file.close()
     result = room != current_room
     current_room = room
+    debug(f'room actuelle: {room}')
     return result
     
 
 
 def has_traffic_in_current_room(log_path, sleep):
+    debug('Vérification du trafic dans la room actuelle')
     busy = False
     log = open(log_path)
     lines = log.readlines(); log.close()
@@ -41,6 +55,10 @@ def has_traffic_in_current_room(log_path, sleep):
 
 
 def has_traffic_in_target_room(api):
+    debug('Vérification du trafic dans la room target')
+    data = requests.get(api).json()
+    if not data['talker']: return False
+    time.sleep(3)
     data = requests.get(api).json()
     return data['talker']
 
@@ -51,6 +69,7 @@ def qsy_to(room, dtmf):
 
 
 def kill_and_start_timersalon():
+    debug('kill and start timersalon')
     time.sleep(5)
     os.system('pkill -f timersalon')
     time.sleep(1)
@@ -60,6 +79,5 @@ def kill_and_start_timersalon():
 def qsy_counter_complete(delay, interval):
     global counter
     counter = counter + interval
+    debug(f"compteur d'attente: {counter}")
     return counter < delay
-
-
