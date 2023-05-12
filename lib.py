@@ -65,7 +65,7 @@ def has_traffic_in_target_room(api):
 
 def qsy_to(room, dtmf):
     print(f"Trafique détecté, QSY vers {room}", flush=True)
-    os.system(f"echo {dtmf}# > /tmp/dtmf_uhf")
+    os.system(f'echo "{dtmf}#" > /tmp/dtmf_uhf')
 
 
 def kill_and_start_timersalon():
