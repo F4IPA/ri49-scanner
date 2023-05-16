@@ -70,7 +70,7 @@ def qsy_to(room):
     global last_room
     print(f"Trafique détecté, QSY vers {room}", flush=True)
     last_room = get_current_room()
-    os.system(f'/etc/spotnik/restart.${room}')
+    os.system(f"/etc/spotnik/restart.{room}")
 
 
 def kill_and_start_timersalon():    
@@ -78,7 +78,7 @@ def kill_and_start_timersalon():
     time.sleep(5)
     os.system('pkill -f timersalon')
     time.sleep(1)    
-    os.system(f'nohup /opt/ri49-scanner/timersalon.sh 900 ${last_room} &')    
+    os.system(f'nohup /opt/ri49-scanner/timersalon.sh "900" "{last_room}" &')    
 
 
 def qsy_counter_complete(delay, interval):
