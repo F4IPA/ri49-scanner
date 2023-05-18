@@ -1,4 +1,4 @@
-# RI49 Scanner 2.1.0
+# RI49 Scanner 2.2.0
 
 ## Description
 

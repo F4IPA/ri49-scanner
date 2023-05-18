@@ -12,7 +12,8 @@ def debug(text):
     if '--debug' not in sys.argv: return
     print(text, flush=True)
 
-def current_room_is_target(current_room_path, target):
+
+def current_room_is_target(target):
     debug('Vérification de la room en cours')
     file = open(current_room_path, 'r')
     room = file.read().strip(); file.close()
@@ -58,22 +59,22 @@ def has_traffic_in_target_room(api):
     debug('Vérification du trafic dans la room target')
     data = requests.get(api).json()
     if not data['talker']: return False
-    time.sleep(3)
+    time.sleep(1)
     data = requests.get(api).json()
     return data['talker']
 
 
 def qsy_to(room, dtmf):
     print(f"Trafique détecté, QSY vers {room}", flush=True)
-    os.system(f'echo "{dtmf}#" > /tmp/dtmf_uhf')
+    last_room = get_current_room()
+    os.system(f"nohup /etc/spotnik/restart.{room} &")
 
 
 def kill_and_start_timersalon():
     debug('kill and start timersalon')
     time.sleep(5)
-    os.system('pkill -f timersalon')
-    time.sleep(1)
-    os.system('nohup /etc/spotnik/timersalon.sh 300 &')    
+    os.system("pkill -f timersalon")
+    os.system(f"nohup /opt/ri49-scanner/timersalon.sh 900 {last_room} &")
 
 
 def qsy_counter_complete(delay, interval):
