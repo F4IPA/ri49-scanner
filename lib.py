@@ -9,6 +9,7 @@ current_room = ''
 last_room = 'rrf'
 counter = 0
 
+
 def debug(text):    
     if '--debug' not in sys.argv: return
     print(text, flush=True)
