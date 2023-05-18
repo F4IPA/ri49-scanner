@@ -8,6 +8,7 @@ import time
 current_room = ''
 counter = 0
 
+
 def debug(text):    
     if '--debug' not in sys.argv: return
     print(text, flush=True)
