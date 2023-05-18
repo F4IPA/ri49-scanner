@@ -32,7 +32,7 @@ while True:
 
 
     # On attend un delai avant de commancer à scanner
-    # Cela permet d'éviter certain problèmes d'informations manquantes
+    # Cela permet d'éviter certains problèmes d'informations manquantes
     # lors d'un qsy dans vers un nouveau salon. 
     if lib.qsy_counter_complete(270, INTERVAL): continue
 
