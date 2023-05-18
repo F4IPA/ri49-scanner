@@ -4,7 +4,9 @@ After=multi-user.target
 
 [Service]
 Type=simple
+KillMode=process
 Restart=always
+RestartSec=60
 ExecStart=/opt/ri49-scanner/main.py
 
 [Install]
