@@ -9,7 +9,7 @@ import time
 TARGET   = 'ri49'                                        # salon à surveiller
 EXCLUDES = ['el','num','default']                        # salon où le scanner doit etre désactivé
 API      = 'https://49.f4ipa.fr/data/api.json'           # url de l'API du salon TARGET
-SLEEP    = 60                                            # secondes d'inactivées avant début du scan
+SLEEP    = 30                                            # secondes d'inactivées avant début du scan
 INTERVAL = 3                                             # Delai en secondes entre chaque scan
 
 print("Initialisation...", flush=True)
