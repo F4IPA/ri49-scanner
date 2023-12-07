@@ -30,7 +30,8 @@ def current_room_is_exclude(exclude_rooms):
 
 def get_current_room():
     file = open('/etc/spotnik/network', 'r')
-    return file.read().strip(); file.close()
+    room = file.read().strip(); file.close()
+    return room
 
 
 def has_qsy():
@@ -63,7 +64,7 @@ def has_traffic_in_target_room(api):
     debug('Vérification du trafic dans la room target')
     data = requests.get(api).json()
     if not data['talker']: return False
-    time.sleep(1)
+    time.sleep(3)
     data = requests.get(api).json()
     return data['talker']
 
@@ -79,7 +80,7 @@ def kill_and_start_timersalon():
     debug('kill and start timersalon')
     time.sleep(5)
     os.system("pkill -f timersalon")
-    os.system(f"nohup /opt/ri49-scanner/timersalon.sh 900 {last_room} &")
+    os.system(f"nohup /opt/ri49-scanner/timersalon.sh 360 {last_room} &")
 
 
 def qsy_counter_complete(delay, interval):
