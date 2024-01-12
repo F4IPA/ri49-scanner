@@ -6,13 +6,17 @@
 import lib
 import time
 
-TARGET   = 'ri49'                                        # salon à surveiller
-EXCLUDES = ['el','num','default']                        # salon où le scanner doit etre désactivé
-API      = 'https://49.f4ipa.fr/data/api.json'           # url de l'API du salon TARGET
-SLEEP    = 30                                            # secondes d'inactivées avant début du scan
-INTERVAL = 3                                             # Delai en secondes entre chaque scan
+TARGET   = 'ri49'                                           # salon à surveiller
+EXCLUDES = [                                                # salon où le scanner doit etre désactivé
+    'fon','tec','bav','loc',
+    'reg','el','num','default',
+    'ara','rroi'
+]
+API      = 'https://49.f4ipa.fr/data/api.json'              # url de l'API du salon TARGET
+SLEEP    = 45                                               # secondes d'inactivées avant début du scan
+INTERVAL = 3                                                # Delai en secondes entre chaque scan
 
-print("Initialisation...", flush=True)
+print("ri49-scanner started...", flush=True)
 
 while True:
 
@@ -30,7 +34,7 @@ while True:
 
     # On attend un delai avant de commancer à scanner
     # Cela permet d'éviter certain problèmes d'informations manquantes
-    # lors d'un qsy dans vers un nouveau salon. 
+    # lors d'un qsy vers un nouveau salon. 
     if lib.qsy_counter_complete(360, INTERVAL): continue
 
 
@@ -42,12 +46,9 @@ while True:
     if not lib.has_traffic_in_target_room(API): continue
 
 
-    # on déménage sur la room en activité
+    # on déménage sur la room en activitée
     lib.qsy_to(TARGET)
 
-
-    # on lance timersalon pour retour après inactivité
-    lib.kill_and_start_timersalon()
 
     # on lance timersalon pour retour après inactivité
     lib.kill_and_start_timersalon()

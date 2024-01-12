@@ -7,7 +7,6 @@ import time
 
 
 current_room = ''
-last_room = 'rrf'
 counter = 0
 
 
@@ -70,9 +69,7 @@ def has_traffic_in_target_room(api):
 
 
 def qsy_to(room):
-    global last_room
     print(f"Trafique détecté, QSY vers {room}", flush=True)
-    last_room = get_current_room()
     os.system(f"nohup /etc/spotnik/restart.{room} &")
 
 
@@ -80,7 +77,7 @@ def kill_and_start_timersalon():
     debug('kill and start timersalon')
     time.sleep(5)
     os.system("pkill -f timersalon")
-    os.system(f"nohup /opt/ri49-scanner/timersalon.sh 360 {last_room} &")
+    os.system(f"nohup /etc/spotnik/timersalon.sh &")
 
 
 def qsy_counter_complete(delay, interval):
